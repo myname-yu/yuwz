@@ -2,7 +2,9 @@
   <div>
     <h1>分类列表</h1>
     <el-table :data="items">
+      <!-- 当el-table元素中注入data对象数组后，在el-table-column中用prop属性来对应对象中的键名即可填入数据 -->
       <el-table-column prop="_id" label="ID" width="260"></el-table-column>
+      <el-table-column prop="parent.name" label="上级分类"></el-table-column>
       <el-table-column prop="name" label="分类名称"></el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
@@ -43,12 +45,13 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(async () => {
-        const res = await this.$http.delele(`categories/${row._id}`);
+        const res = await this.$http.delete(`categories/${row._id}`);
         console.log(res);
         this.$message({
           type: "success",
           message: "删除成功!",
         });
+        this.fetch();
       });
     },
   },

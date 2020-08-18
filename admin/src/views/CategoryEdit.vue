@@ -1,8 +1,14 @@
 <template>
   <div>
     <h1>{{id? '编辑分类':'新建分类'}}</h1>
-    <el-form lable-width="120px" @submit.native.prevent="save">
-      <el-form-item lable="名称">
+    <el-form label-width="120px" @submit.native.prevent="save">
+      <el-form-item label="上级分类">
+        <el-select v-model="model.parent">
+          <!-- key决定了vue的性能，label决定了option显示的内容 value决定了点击时候真正存储的内容 -->
+          <el-option v-for="item in parents" :key="item._id" :label="item.name" :value="item._id"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="名称">
         <el-input v-model="model.name"></el-input>
       </el-form-item>
       <el-form-item>
@@ -19,9 +25,8 @@ export default {
   },
   data() {
     return {
-      model: {
-        name: "",
-      },
+      model: {},
+      parents: [],
     };
   },
   methods: {
@@ -44,9 +49,14 @@ export default {
       const res = await this.$http.get(`categories/${this.id}`);
       this.model = res.data;
     },
+    async fatchParents() {
+      const res = await this.$http.get(`categories`);
+      this.parents = res.data;
+    },
   },
   created() {
     // 如果有id则执行
+    this.fatchParents();
     this.id && this.fetch();
   },
 };
