@@ -1,17 +1,21 @@
 <template>
   <div>
-    <h1>分类列表</h1>
+    <h1>物品列表</h1>
     <el-table :data="items">
       <!-- 当el-table元素中注入data对象数组后，在el-table-column中用prop属性来对应对象中的键名即可填入数据 -->
       <el-table-column prop="_id" label="ID" width="260"></el-table-column>
-      <el-table-column prop="parent.name" label="上级分类"></el-table-column>
-      <el-table-column prop="name" label="分类名称"></el-table-column>
+      <el-table-column prop="name" label="物品名称"></el-table-column>
+      <el-table-column prop="icon" label="图标">
+        <template slot-scope="scope">
+        <img :src="scope.row.icon" style="height:3rem ">
+        </template>
+      </el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
           <el-button
             type="text"
             size="small"
-            @click="$router.push(`/categories/edit/${scope.row._id}`)"
+            @click="$router.push(`/items/edit/${scope.row._id}`)"
           >编辑</el-button>
           <el-button type="text" size="small" @click="remove(scope.row)">删除</el-button>
         </template>
@@ -22,7 +26,7 @@
 <script>
 export default {
   data() {
-    return {
+    return {  
       items: [],
     };
   },
@@ -31,9 +35,10 @@ export default {
       // await的意思就是等待。它后面可以跟一个表达式。如果是值(如字符串、数字、普通对象等等)的话，返回值就是本身的值。
       // 不过最常用的是后面跟一个promise对象。await会等待这个promise的状态由pending转为fulfilled或者rejected。在此期间它会阻塞，延迟执行await语句后面的语句。
       // 如果promise对象的结果是resolve，它会将resolve的值，作为await表达式的运算结果。
-      const res = await this.$http.get("rest/categories");
-      console.log(res);
-      this.items = res.data;
+      this.$http.get("rest/items").then((res) => {
+        console.log(res);
+        this.items = res.data;
+      });
     },
     // 列表删除功能
     async remove(row) {
@@ -44,7 +49,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(async () => {
-        const res = await this.$http.delete(`rest/categories/${row._id}`);
+        const res = await this.$http.delete(`rest/items/${row._id}`);
         console.log(res);
         this.$message({
           type: "success",
