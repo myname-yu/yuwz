@@ -10,7 +10,7 @@ const schema = new mongoose.Schema({
     title: {
         type: String,
     },
-    category: [{
+    categories: [{
         type: mongoose.SchemaTypes.ObjectId,
         // ref指定关联的一个模型
         ref: 'Category',
@@ -20,16 +20,17 @@ const schema = new mongoose.Schema({
         difficult: {
             type: Number,
         },
-        skill: {
+        skills: {
             type: Number,
         },
         attack: {
             type: Number,
         },
-        surviue: {
+        survive: {
             type: Number,
         },
     },
+    // 技能
     skills: [{
         icon: {
             type: String,
@@ -44,24 +45,30 @@ const schema = new mongoose.Schema({
             type: String,
         },
     }],
-    itemsA: [{
+    // 顺风出装
+    itemsTail: [{
 
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Item'
     }],
-    itemsB: [{
+    // 逆风出装
+    itemsHead: [{
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Item'
     }],
+    // 使用技巧
     usageTips: {
         type: String
     },
+    // 对抗技巧
     battleTips: {
         type: String
     },
+    // 团战思路
     teamTips: {
         type: String
     },
+    //最佳搭档
     partners: [{
         hero: {
             type: mongoose.SchemaTypes.ObjectId,

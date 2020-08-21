@@ -5,9 +5,11 @@
       <!-- 当el-table元素中注入data对象数组后，在el-table-column中用prop属性来对应对象中的键名即可填入数据 -->
       <el-table-column prop="_id" label="ID" width="260"></el-table-column>
       <el-table-column prop="name" label="英雄名称"></el-table-column>
+      <el-table-column prop="categories" label="英雄类型"></el-table-column>
+      <el-table-column prop="title" label="英雄称号"></el-table-column>
       <el-table-column prop="avatar" label="头像">
         <template slot-scope="scope">
-        <img :src="scope.row.avatar" style="height:3rem ">
+          <img :src="scope.row.avatar" style="height:3rem " />
         </template>
       </el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
@@ -26,7 +28,7 @@
 <script>
 export default {
   data() {
-    return {  
+    return {
       items: [],
     };
   },
