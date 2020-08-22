@@ -32,13 +32,14 @@ export default {
       // 不过最常用的是后面跟一个promise对象。await会等待这个promise的状态由pending转为fulfilled或者rejected。在此期间它会阻塞，延迟执行await语句后面的语句。
       // 如果promise对象的结果是resolve，它会将resolve的值，作为await表达式的运算结果。
       const res = await this.$http.get("rest/categories");
-      console.log(res);
+      // console.log(res);
       this.items = res.data;
+      console.log(res.data);
     },
     // 列表删除功能
     async remove(row) {
-      console.log(row);
-      console.log(row.name, row._id);
+      // console.log(row);
+      // console.log(row.name, row._id);
       this.$confirm(`是否确定要删除分类“${row.name}”?`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",

@@ -22,18 +22,26 @@ module.exports = app => {
     router.delete('/:id', async(req, res) => {
         await req.Model.findByIdAndDelete(req.params.id, req.body);
         res.send({
-                success: true
-            })
-            // console.log('删除');
+            success: true
+        });
+        // console.log('删除');
     });
     // 分类列表(获取分类的列表)
     router.get('/', async(req, res) => {
         // 联表查询
+        // console.log(req.Model.modelName);
         const queryOptions = {}
         if (req.Model.modelName === 'Category') {
             // 用populate方法，表示关联取出parent
             queryOptions.populate = 'parent'
         }
+        // else if (req.Model.modelName === 'Hero') {
+        //     // 用populate方法，表示关联取出parent
+        //     queryOptions.populate = 'categories'
+        // } else if (req.Model.modelName === 'Article') {
+        //     // 用populate方法，表示关联取出parent
+        //     queryOptions.populate = 'categories'
+        // }
         const items = await req.Model.find().setOptions(queryOptions).limit(10);
         // console.log(items);
         res.send(items)
@@ -41,13 +49,13 @@ module.exports = app => {
     // 点击编辑之后，在编辑分类页显示要编辑的内容
     router.get('/:id', async(req, res) => {
         const model = await req.Model.findById(req.params.id);
-        console.log(model);
+        // console.log(model);
         res.send(model)
     });
     // 改成动态模型
     app.use('/admin/api/rest/:resource', async(req, res, next) => {
         // inflection将小写的复数形式转换成大写的单数形式
-        console.log(req.params.resource)
+        // console.log(req.params.resource)
         const modelName = require('inflection').classify(req.params.resource);
         // req.Model表明的是给请求对象上挂载一个属性
         req.Model = require(`../../models/${modelName}`);

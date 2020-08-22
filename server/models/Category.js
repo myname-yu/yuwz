@@ -8,6 +8,7 @@ const schema = new mongoose.Schema({
     // 这里的parent表示该分类为mongodb数据库里面的id
     parent: {
         type: mongoose.SchemaTypes.ObjectId,
+        // type: mongoose.Schema.Types.ObjectId,
         // ref指定关联的一个模型
         ref: 'Category',
     }

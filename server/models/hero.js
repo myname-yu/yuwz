@@ -72,7 +72,7 @@ const schema = new mongoose.Schema({
     partners: [{
         hero: {
             type: mongoose.SchemaTypes.ObjectId,
-            ref: 'hero'
+            ref: 'Hero'
         },
         description: {
             type: String
