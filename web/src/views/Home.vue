@@ -41,7 +41,9 @@
       </div>
     </div>
 
-    <!-- <m-list-card icon="menu1" title="新闻资讯" :categories="newsCats">
+    <m-list-card icon="cc-menu-circle" title="新闻资讯" :categories="newsCats">
+      <!-- #为2.6的新语法 v-slot的缩写。例如 v-slot:header 可以被重写为 #header-->
+      <!-- 和其它指令一样，该缩写只在其有参数的时候才可用 -->
       <template #items="{category}">
         <router-link
           tag="div"
@@ -78,10 +80,10 @@
           </router-link>
         </div>
       </template>
-    </m-list-card>-->
+    </m-list-card>
 
-    <m-card icon="menu1" title="精彩视频"></m-card>
-    <m-card icon="menu1" title="图文攻略"></m-card>
+    <m-card icon="cc-menu-circle" title="精彩视频"></m-card>
+    <m-card icon="cc-menu-circle" title="图文攻略"></m-card>
   </div>
 </template>
 

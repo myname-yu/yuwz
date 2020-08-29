@@ -12,6 +12,8 @@ const schema = new mongoose.Schema({
     body: {
         type: String
     },
+}, {
+    timestamps: true
 });
 
 // 导出mangoose模型

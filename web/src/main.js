@@ -25,6 +25,8 @@ Vue.prototype.$http = axios.create({
   // baseURL: process.env.VUE_APP_API_URL || '/web/api'
   // baseURL: 'http://localhost:3000/web/api'
 })
+// 引入字体图标
+import './assets/iconfont/iconfont.css'
 import './assets/style.scss'
 new Vue({
   router,
