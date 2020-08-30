@@ -13,6 +13,7 @@ const schema = new mongoose.Schema({
         type: String
     },
 }, {
+    // 添加时间戳，这样在录入数据的时候，就有了两个新增字段createdAt（创建日期）以及updatedAt(更新日期)
     timestamps: true
 });
 

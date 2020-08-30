@@ -23,8 +23,10 @@ schema.virtual('children', {
 
 schema.virtual('newsList', {
     localField: '_id',
+    // foreignField外键
     foreignField: 'categories',
     justOne: false,
+    // 关联的是Article
     ref: 'Article'
 })
 // 导出mangoose模型

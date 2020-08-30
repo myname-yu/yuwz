@@ -80,5 +80,5 @@ const schema = new mongoose.Schema({
     }]
 });
 
-// 导出mangoose模型
-module.exports = mongoose.model("Hero", schema);
+// 导出mangoose模型(指定名称时，传递第三个参数)
+module.exports = mongoose.model("Hero", schema, 'heroes');

@@ -44,6 +44,7 @@
     <m-list-card icon="cc-menu-circle" title="新闻资讯" :categories="newsCats">
       <!-- #为2.6的新语法 v-slot的缩写。例如 v-slot:header 可以被重写为 #header-->
       <!-- 和其它指令一样，该缩写只在其有参数的时候才可用 -->
+      <!-- 直接拿到了子组件的category -->
       <template #items="{category}">
         <router-link
           tag="div"
@@ -82,15 +83,17 @@
       </template>
     </m-list-card>
 
-    <m-card icon="cc-menu-circle" title="精彩视频"></m-card>
-    <m-card icon="cc-menu-circle" title="图文攻略"></m-card>
+    <!-- <m-card icon="cc-menu-circle" title="精彩视频"></m-card>
+    <m-card icon="cc-menu-circle" title="图文攻略"></m-card>-->
   </div>
 </template>
 
 <script>
+// 时间戳格式化
 import dayjs from "dayjs";
 
 export default {
+  // 过滤器
   filters: {
     date(val) {
       return dayjs(val).format("MM/DD");
@@ -108,10 +111,13 @@ export default {
     };
   },
   methods: {
+    // 获取新闻分类
     async fetchNewsCats() {
       const res = await this.$http.get("news/list");
       this.newsCats = res.data;
+      // console.log(this.newsCats);
     },
+    // 获取英雄分类
     async fetchHeroCats() {
       const res = await this.$http.get("heroes/list");
       this.heroCats = res.data;

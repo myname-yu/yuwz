@@ -130,13 +130,13 @@
 .avatar-uploader-icon {
   font-size: 28px;
   color: #8c939d;
-  min-width: 5rem;
+  max-width: 5rem;
   height: 5rem;
   line-height: 5rem !important;
   text-align: center;
 }
 .avatar {
-  min-width: 5rem;
+  max-width: 5rem;
 
   height: 5rem;
   display: block;

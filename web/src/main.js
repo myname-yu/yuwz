@@ -7,11 +7,14 @@ import store from './store'
 Vue.config.productionTip = false
 // import './assets/variables.scss'
 // 引入swiper
+// import swiper from 'swiper'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 // import 'swiper/css/swiper.css'
 // 引用6.0swiper
 import 'swiper/swiper-bundle.css'
+// Vue.use(swiper, /* { default options with global component } */)
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
+// Vue.use(swiper)
 
 // 将卡片注册成全局组件
 import Card from './components/Card.vue'
@@ -23,7 +26,7 @@ Vue.component('m-list-card', ListCard)
 import axios from 'axios'
 Vue.prototype.$http = axios.create({
   // baseURL: process.env.VUE_APP_API_URL || '/web/api'
-  // baseURL: 'http://localhost:3000/web/api'
+  baseURL: 'http://localhost:3000/web/api'
 })
 // 引入字体图标
 import './assets/iconfont/iconfont.css'
